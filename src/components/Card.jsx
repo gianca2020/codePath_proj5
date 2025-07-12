@@ -8,7 +8,7 @@ const Card = ({ brewery }) => {
             {/* Card 1: Location */}
             <div className="bg-[#7C2600]/35 p-6 rounded-lg shadow-lg ">
                 <h3 className="text-sm font-bold text-[#7C2600] mb-2">LOCATION</h3>
-                <p className="text-lg font-semibold text-[#7C2600]">{brewery ? (brewery.street || brewery.city) : "Select a brewery"}</p>
+                <p className="text-lg font-semibold text-[#7C2600]">{brewery ? (brewery.street) : "Select a brewery"}</p>
             </div>
 
             {/* Card 2: Phone */}
@@ -30,7 +30,7 @@ const Card = ({ brewery }) => {
                         Visit Website
                     </a>
                 ) : (
-                    <p className="text-lg font-semibold text-[#7C2600]">Not available</p>
+                    <p className="text-lg font-semibold">Not available</p>
                 )}
             </div>
         </div>

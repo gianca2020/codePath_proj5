@@ -1,16 +1,22 @@
-//import { useState } from 'react'
-
+import { useState } from 'react'
 import './App.css'
+import Header from './components/Header'
+import NavBar from './components/Navbar'
+import List from './components/List'
+import Card from './components/Card'
 
 function App() {
-  //so there would be a search bar that filters information
-  //make sure to find a random API to display about 10 piees of information (i like the one about airports)
-  //take advantae of the useState hook to manage the search input
-  //use the useEffect hook to fetch data from the API when the component mounts
-
   return (
     <>
-      
+    <div className=" bg-[#FFFBEA]">
+      <div className="flex h-screen">
+        <NavBar /> {/* NavBar should have its own width and background */}
+        <div className="flex-1 flex flex-col justify-center items-center gap-4"> {/* This will take remaining space regardless of NavBar width */}
+          <List />
+        </div>
+      </div>
+    </div>
+
     </>
   )
 }
