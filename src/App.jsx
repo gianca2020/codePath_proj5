@@ -6,13 +6,15 @@ import List from './components/List'
 import Card from './components/Card'
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
     <div className=" bg-[#FFFBEA]">
       <div className="flex h-screen">
-        <NavBar /> {/* NavBar should have its own width and background */}
-        <div className="flex-1 flex flex-col justify-center items-center gap-4"> {/* This will take remaining space regardless of NavBar width */}
-          <List />
+        <NavBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+        <div className="flex-1 flex flex-col justify-center items-center gap-4">
+          <List searchTerm={searchTerm} />
         </div>
       </div>
     </div>
