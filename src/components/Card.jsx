@@ -24,31 +24,48 @@ const Card = ({ brewery }) => {
             {/* Card 1: Location */}
             <div className="bg-[#7C2600]/35 p-6 rounded-lg shadow-lg ">
                 <h3 className="text-sm font-bold text-[#7C2600] mb-2">LOCATION</h3>
-                <p className="text-lg font-semibold text-[#7C2600]">{brewery ? (brewery.street) : "Select a brewery"}</p>
+                <p className="text-lg font-semibold text-[#7C2600]">{brewery ? (brewery.street   ? `${brewery.street}` : brewery.street) : "Select a brewery"}</p>
+                <p className="text-sm font-semibold text-[#7C2600] ">{brewery ? (brewery.city  ? `${brewery.city}, ${brewery.state}` : brewery.city) : ""}</p>
             </div>
 
-            {/* Card 2: Phone */}
+            {/* Card 2: Contact */}
             <div className="bg-[#7C2600]/35 p-6 rounded-lg shadow-lg ">
-                <h3 className="text-sm font-bold text-[#7C2600] mb-2">PHONE NUMBER</h3>
-                <p className="text-lg font-semibold text-[#7C2600]">
-                    {brewery ? formatPhoneNumber(brewery.phone) : "Select a brewery"}
-                </p>
-            </div>
-
-            {/* Card 3: Website */}
-            <div className="bg-[#7C2600]/35 p-6 rounded-lg shadow-lg ">
-                <h3 className="text-sm font-bold text-[#7C2600] mb-2">WEBSITE</h3>
-                {brewery && brewery.website_url ? (
-                    <a 
-                        href={brewery.website_url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-lg font-semibold text-[#7C2600] hover:underline"
-                    >
-                        Visit Website
-                    </a>
+                <h3 className="text-sm font-bold text-[#7C2600] mb-2">CONTACT</h3>
+                {brewery ? (
+                    <div className="space-y-2">
+                        <p className="text-lg font-semibold text-[#7C2600]">
+                            {formatPhoneNumber(brewery.phone)}
+                        </p>
+                        {brewery.website_url && (
+                            <a 
+                                href={brewery.website_url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-sm font-semibold text-[#7C2600] hover:underline block"
+                            >
+                                Visit Website
+                            </a>
+                        )}
+                    </div>
                 ) : (
-                    <p className="text-lg font-semibold">Not available</p>
+                    <p className="text-lg font-semibold text-[#7C2600]">Select a brewery</p>
+                )}
+            </div>
+
+            {/* Card 3: Type & Status */}
+            <div className="bg-[#7C2600]/35 p-6 rounded-lg shadow-lg ">
+                <h3 className="text-sm font-bold text-[#7C2600] mb-2">INFO</h3>
+                {brewery ? (
+                    <div className="space-y-1">
+                        <p className="text-lg font-semibold text-[#7C2600]">
+                            {brewery.brewery_type || "Brewery"}
+                        </p>
+                        <p className="text-sm text-[#7C2600]">
+                            {brewery.state || "Unknown State"}
+                        </p>
+                    </div>
+                ) : (
+                    <p className="text-lg font-semibold">Select a brewery</p>
                 )}
             </div>
         </div>
