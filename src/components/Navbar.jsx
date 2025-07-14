@@ -5,11 +5,30 @@ import cities from "../data/cities";
 
 const NavBar = ({ searchTerm, onSearchChange }) => {
 
+    const [selectedCity, setSelectedCity] = useState("");
+    const [selectedType, setSelectedType] = useState("");
 
     const handleDropdownChange = (e) => {
-        const selectedCity = e.target.value;
-        if (selectedCity) {
-            onSearchChange(selectedCity); // Reuse existing function!
+        const city = e.target.value;
+        setSelectedCity(city);
+        updateSearch(city, selectedType);
+    };
+
+    const handleBreweryTypeChange = (e) => {
+        const type = e.target.value;
+        setSelectedType(type);
+        updateSearch(selectedCity, type);
+    };
+
+    const updateSearch = (city, type) => {
+        if (city && type) {
+            onSearchChange(`${city}|type:${type}`); // Combined filter
+        } else if (city) {
+            onSearchChange(city); // City only
+        } else if (type) {
+            onSearchChange(`type:${type}`); // Type only
+        } else {
+            onSearchChange(""); // Clear all
         }
     };
 
@@ -37,6 +56,15 @@ const NavBar = ({ searchTerm, onSearchChange }) => {
                     {city}
                   </option>
                 ))}
+              </select>
+              
+              <select onChange={handleBreweryTypeChange} className="border border-[#7C2600] p-2 rounded-lg w-full text-lg mt-2">
+                <option value="">Filter by brewery type...</option>
+                <option value="micro">Micro Breweries</option>
+                <option value="nano">Nano Breweries</option>
+                <option value="brewpub">Brewpubs</option>
+                <option value="large">Large Breweries</option>
+                <option value="planning">Planning Stage</option>
               </select>
             </div>
 
