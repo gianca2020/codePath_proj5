@@ -55,7 +55,7 @@ const List = ({ searchTerm }) => {
                     className="py-2 text-center cursor-pointer hover:bg-[#7C2600]/30 rounded-lg transition-colors duration-200" 
                     onClick={() => setSelectedBrewery(brewery)}
                 >
-                    {brewery.name}
+                    {brewery.name && brewery.city && brewery.state ? ` - ${brewery.name}, ${brewery.city}, ${brewery.state}` : brewery.name}
                 </li>
             ))}
         </ul>

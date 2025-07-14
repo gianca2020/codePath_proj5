@@ -1,7 +1,18 @@
 import React from "react";
 import { useState } from "react";
+import cities from "../data/cities";
+
 
 const NavBar = ({ searchTerm, onSearchChange }) => {
+
+
+    const handleDropdownChange = (e) => {
+        const selectedCity = e.target.value;
+        if (selectedCity) {
+            onSearchChange(selectedCity); // Reuse existing function!
+        }
+    };
+
     const [showAboutPopup, setShowAboutPopup] = useState(false);
     return(
         <>
@@ -17,9 +28,18 @@ const NavBar = ({ searchTerm, onSearchChange }) => {
                 placeholder="Enter city name..." 
                 value={searchTerm || ""}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="border border-[#7C2600] mt-4 p-2 rounded-lg w-50% text-lg" 
+                className="border border-[#7C2600] mt-4 p-2 rounded-lg w-full text-lg mb-2" 
               />
+              <select onChange={handleDropdownChange} className="border border-[#7C2600] p-2 rounded-lg w-full text-lg">
+                <option value="">Select a city...</option>
+                {cities.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
             </div>
+
             <li className="cursor-pointer hover:bg-[#7C2600]/20 p-2 rounded">Dashboard</li>
             <li 
               className="cursor-pointer hover:bg-[#7C2600]/20 p-2 rounded"
