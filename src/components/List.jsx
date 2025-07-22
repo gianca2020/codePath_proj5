@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 //add event for summary of highest rated spot
 //reach out about stretch 
 const List = ({ searchTerm }) => {
@@ -11,7 +12,7 @@ const List = ({ searchTerm }) => {
     const fetchBreweriesByCity = async (city) => {
         const cityParam = city.replace(/\s+/g, "_").toLowerCase();
         //link was https://api.openbrewerydb.org/v1/breweries
-        const url = `https://api.openbrewerydb.org/v1/breweries?by_city=${cityParam}&per_page=20`;
+        const url = `https://api.openbrewerydb.org/v1/breweries?by_city=${cityParam}&per_page=10`;
         try {
             const res = await fetch(url);
             const data = await res.json();
@@ -116,6 +117,9 @@ const List = ({ searchTerm }) => {
                         onClick={() => setSelectedBrewery(brewery)}
                     >
                         {brewery.name && brewery.city && brewery.state ? ` - ${brewery.name}, ${brewery.city}, ${brewery.state}` : brewery.name}
+                        <div className="hover:underline text-m text-[#7C2600]">
+                        <p><Link to={`info/${brewery.id}`}>Link</Link></p>
+                        </div>
                     </li>
                 ))}
             </ul>
