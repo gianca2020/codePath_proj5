@@ -59,6 +59,10 @@ const Info = () => {
                             <p className="mb-1"><span className="font-semibold">Name:</span> {brewery.name}</p>
                             <p className="mb-1"><span className="font-semibold">Type:</span> {brewery.brewery_type}</p>
                             <p className="mb-1"><span className="font-semibold">Address:</span> {brewery.street}, {brewery.city}, {brewery.state} {brewery.postal_code}</p>
+                            <p className="mb-1"><span className="font-semibold">Country:</span> {brewery.country || 'USA'}</p>
+                            <p className="mb-1"><span className="font-semibold">Latitude:</span> {brewery.latitude || 'N/A'}</p>
+                            <p className="mb-1"><span className="font-semibold">Longitude:</span> {brewery.longitude || 'N/A'}</p>
+                            <p className="mb-1"><span className="font-semibold">Brewery ID:</span> {brewery.id}</p>
                             {brewery.phone && <p className="mb-1"><span className="font-semibold">Phone:</span> {brewery.phone}</p>}
                             {brewery.website_url && (
                                 <p className="mb-1"><span className="font-semibold">Website:</span> <a href={brewery.website_url} className="text-blue-700 underline" target="_blank" rel="noopener noreferrer">{brewery.website_url}</a></p>
